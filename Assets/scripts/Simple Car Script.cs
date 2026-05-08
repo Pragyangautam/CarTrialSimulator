@@ -1,36 +1,34 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
-public class SimpleCarController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public float speed = 15f;
-    public float turnSpeed = 100f;
+    public Slider ruleBar;
 
-    private Rigidbody rb;
-    private float moveInput;
-    private float turnInput;
+    private int ruleBreaks = 0;
+    public int maxRuleBreaks = 2;
 
-    void Start()
+    public void BreakRule()
     {
-        rb = GetComponent<Rigidbody>();
+        ruleBreaks++;
+
+        // Update UI bar
+        ruleBar.value = ruleBreaks;
+
+        Debug.Log("Rule Broken: " + ruleBreaks);
+
+        // Check lose condition
+        if (ruleBreaks >= maxRuleBreaks)
+        {
+            GameOver();
+        }
     }
 
-    void Update()
+    void GameOver()
     {
-        // Input
-        moveInput = Input.GetAxis("Vertical");   // W/S
-        turnInput = Input.GetAxis("Horizontal"); // A/D
-    }
+        Debug.Log("GAME OVER");
 
-    void FixedUpdate()
-    {
-        // Move forward/backward
-        Vector3 move = transform.forward * moveInput * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + move);
-
-        // Turn left/right
-        float turn = turnInput * turnSpeed * Time.fixedDeltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        rb.MoveRotation(rb.rotation * turnRotation);
+        // Stop time
+        Time.timeScale = 0f;
     }
 }
