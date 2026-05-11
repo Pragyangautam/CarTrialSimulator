@@ -3,10 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
-    [Header("Car Settings")]
-    public float moveSpeed = 15f;
-    public float turnSpeed = 120f;
-    public float brakeForce = 5f;
+    [Header("Movement")]
+    public float acceleration = 30f;
+    public float maxSpeed = 20f;
+    public float turnStrength = 120f;
+    public float drag = 2f;
+
+    [Header("Grip")]
+    public float driftFactor = 0.95f;
 
     private Rigidbody rb;
 
@@ -16,56 +20,67 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        // Better car stability
         rb.centerOfMass = new Vector3(0, -0.5f, 0);
+        rb.useGravity = true;
     }
 
     void Update()
     {
-        // W/S or Up/Down
         moveInput = Input.GetAxis("Vertical");
-
-        // A/D or Left/Right
         turnInput = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
     {
-        MoveCar();
-        TurnCar();
-        ApplyBrake();
+        Move();
+        Turn();
+        ApplyFriction();
+        LimitSpeed();
+        ReduceSidewaysSlip();
     }
 
-    void MoveCar()
+    void Move()
     {
-        Vector3 moveDirection = transform.forward * moveInput * moveSpeed;
-
-        rb.linearVelocity = new Vector3(
-            moveDirection.x,
-            rb.linearVelocity.y,
-            moveDirection.z
-        );
+        rb.AddForce(transform.forward * moveInput * acceleration, ForceMode.Acceleration);
     }
 
-    void TurnCar()
+    void Turn()
     {
-        if (moveInput != 0)
+        float speedFactor = Mathf.Clamp(rb.linearVelocity.magnitude / maxSpeed, 0.2f, 1f);
+        float directionMultiplier = moveInput >= 0 ? 1f : -1f;
+
+        float turn = turnInput * turnStrength * speedFactor * directionMultiplier * Time.fixedDeltaTime;
+
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(0f, turn, 0f));
+    }
+
+    void ApplyFriction()
+    {
+        Vector3 vel = rb.linearVelocity;
+
+        Vector3 flatVel = new Vector3(vel.x, 0, vel.z);
+        flatVel *= (1f - drag * Time.fixedDeltaTime);
+
+        rb.linearVelocity = new Vector3(flatVel.x, vel.y, flatVel.z);
+    }
+
+    void LimitSpeed()
+    {
+        Vector3 vel = rb.linearVelocity;
+        Vector3 flatVel = new Vector3(vel.x, 0, vel.z);
+
+        if (flatVel.magnitude > maxSpeed)
         {
-            float turn = turnInput * turnSpeed * Time.fixedDeltaTime;
-
-            Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-
-            rb.MoveRotation(rb.rotation * turnRotation);
+            Vector3 limited = flatVel.normalized * maxSpeed;
+            rb.linearVelocity = new Vector3(limited.x, vel.y, limited.z);
         }
     }
 
-    void ApplyBrake()
+    void ReduceSidewaysSlip()
     {
-        // Space key for brake
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.linearVelocity *= (1 - brakeForce * Time.fixedDeltaTime);
-        }
+        Vector3 localVel = transform.InverseTransformDirection(rb.linearVelocity);
+        localVel.x *= driftFactor;
+
+        rb.linearVelocity = transform.TransformDirection(localVel);
     }
 }
