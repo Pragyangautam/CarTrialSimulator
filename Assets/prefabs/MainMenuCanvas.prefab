@@ -1,0 +1,276 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_Name: MainMenuCanvas
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!224 &100001
+RectTransform:
+  m_GameObject: {fileID: 100000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!223 &100002
+Canvas:
+  m_GameObject: {fileID: 100000}
+  m_RenderMode: 0
+  m_PixelPerfect: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &100003
+MonoBehaviour:
+  m_GameObject: {fileID: 100000}
+  m_Script: {fileID: 11500000, guid: REPLACE_WITH_MAINMENU_SCRIPT_GUID, type: 3}
+  gameSceneName: Game
+  playButton: {fileID: 200001}
+  rulesButton: {fileID: 200011}
+  quitButton: {fileID: 200021}
+  rulesCloseButton: {fileID: 300001}
+  quitConfirmButton: {fileID: 400001}
+  quitCancelButton: {fileID: 400011}
+  rulesPanel: {fileID: 300000}
+  quitPanel: {fileID: 400000}
+
+# ─── BACKGROUND ────────────────────────────────────────────────────
+--- !u!1 &110000
+GameObject:
+  m_Name: Background
+  m_IsActive: 1
+--- !u!224 &110001
+RectTransform:
+  m_GameObject: {fileID: 110000}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &110002
+Image:
+  m_GameObject: {fileID: 110000}
+  m_Color: {r: 0.08, g: 0.10, b: 0.14, a: 1}
+
+# ─── TITLE ─────────────────────────────────────────────────────────
+--- !u!1 &120000
+GameObject:
+  m_Name: TitleText
+  m_IsActive: 1
+--- !u!224 &120001
+RectTransform:
+  m_AnchorMin: {x: 0.1, y: 0.65}
+  m_AnchorMax: {x: 0.6, y: 0.88}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &120002
+TextMeshProUGUI:
+  m_GameObject: {fileID: 120000}
+  m_text: "CAR TRIAL\nSIMULATOR"
+  m_fontSize: 64
+  m_fontStyle: Bold
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_alignment: TopLeft
+
+# ─── SUBTITLE ──────────────────────────────────────────────────────
+--- !u!1 &121000
+GameObject:
+  m_Name: SubtitleText
+  m_IsActive: 1
+--- !u!224 &121001
+RectTransform:
+  m_AnchorMin: {x: 0.1, y: 0.58}
+  m_AnchorMax: {x: 0.6, y: 0.66}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &121002
+TextMeshProUGUI:
+  m_text: "Nepal Driving Test Experience"
+  m_fontSize: 20
+  m_color: {r: 0.8, g: 0.75, b: 0.5, a: 1}
+  m_alignment: TopLeft
+
+# ─── PLAY BUTTON ───────────────────────────────────────────────────
+--- !u!1 &200000
+GameObject:
+  m_Name: PlayButton
+  m_IsActive: 1
+--- !u!224 &200001
+RectTransform:
+  m_AnchorMin: {x: 0.1, y: 0.44}
+  m_AnchorMax: {x: 0.38, y: 0.53}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &200002
+Button:
+  m_GameObject: {fileID: 200000}
+  m_Colors:
+    m_NormalColor: {r: 0.15, g: 0.55, b: 0.3, a: 1}
+    m_HighlightedColor: {r: 0.2, g: 0.7, b: 0.4, a: 1}
+    m_PressedColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+--- !u!114 &200003
+TextMeshProUGUI:
+  m_text: "▶  PLAY"
+  m_fontSize: 22
+  m_fontStyle: Bold
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_alignment: MiddleCenter
+
+# ─── RULES BUTTON ──────────────────────────────────────────────────
+--- !u!1 &200010
+GameObject:
+  m_Name: RulesButton
+  m_IsActive: 1
+--- !u!224 &200011
+RectTransform:
+  m_AnchorMin: {x: 0.1, y: 0.32}
+  m_AnchorMax: {x: 0.38, y: 0.41}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &200012
+Button:
+  m_GameObject: {fileID: 200010}
+  m_Colors:
+    m_NormalColor: {r: 0.15, g: 0.35, b: 0.6, a: 1}
+    m_HighlightedColor: {r: 0.2, g: 0.45, b: 0.75, a: 1}
+    m_PressedColor: {r: 0.1, g: 0.25, b: 0.45, a: 1}
+--- !u!114 &200013
+TextMeshProUGUI:
+  m_text: "≡  RULES"
+  m_fontSize: 22
+  m_fontStyle: Bold
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_alignment: MiddleCenter
+
+# ─── QUIT BUTTON ───────────────────────────────────────────────────
+--- !u!1 &200020
+GameObject:
+  m_Name: QuitButton
+  m_IsActive: 1
+--- !u!224 &200021
+RectTransform:
+  m_AnchorMin: {x: 0.1, y: 0.20}
+  m_AnchorMax: {x: 0.38, y: 0.29}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &200022
+Button:
+  m_GameObject: {fileID: 200020}
+  m_Colors:
+    m_NormalColor: {r: 0.55, g: 0.15, b: 0.15, a: 1}
+    m_HighlightedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+    m_PressedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
+--- !u!114 &200023
+TextMeshProUGUI:
+  m_text: "✕  QUIT"
+  m_fontSize: 22
+  m_fontStyle: Bold
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_alignment: MiddleCenter
+
+# ─── RULES PANEL ───────────────────────────────────────────────────
+--- !u!1 &300000
+GameObject:
+  m_Name: RulesPanel
+  m_IsActive: 0
+--- !u!224 &300001
+RectTransform:
+  m_AnchorMin: {x: 0.2, y: 0.1}
+  m_AnchorMax: {x: 0.8, y: 0.9}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &300002
+Image:
+  m_color: {r: 0.05, g: 0.08, b: 0.12, a: 0.97}
+--- !u!114 &300003
+TextMeshProUGUI:
+  m_text: "RULES OF THE ROAD\n\n01  Stay within the designated trial track at all times. Crossing lane boundaries results in an immediate penalty.\n\n02  Obey all traffic signals and road signs on the course. Running a red light or ignoring a stop sign will fail the trial.\n\n03  Maintain a safe following distance from obstacles and other vehicles. Collisions deduct points from your score.\n\n04  Perform parking manoeuvres precisely within the marked bay. Tyres must not touch the boundary lines.\n\n05  Complete each trial stage within the allotted time. Exceeding the time limit reduces your final grade.\n\n06  Accumulate 70 or more points out of 100 to pass the trial and receive your licence."
+  m_fontSize: 17
+  m_color: {r: 0.88, g: 0.85, b: 0.78, a: 1}
+  m_alignment: TopLeft
+  m_margin: {x: 30, y: 30, z: 30, w: 30}
+
+# Close button inside RulesPanel
+--- !u!1 &300010
+GameObject:
+  m_Name: CloseButton
+  m_IsActive: 1
+--- !u!224 &300011
+RectTransform:
+  m_AnchorMin: {x: 0.35, y: 0.04}
+  m_AnchorMax: {x: 0.65, y: 0.13}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &300012
+Button:
+  m_GameObject: {fileID: 300010}
+--- !u!114 &300013
+TextMeshProUGUI:
+  m_text: "CLOSE"
+  m_fontSize: 20
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_alignment: MiddleCenter
+
+# ─── QUIT CONFIRM PANEL ────────────────────────────────────────────
+--- !u!1 &400000
+GameObject:
+  m_Name: QuitPanel
+  m_IsActive: 0
+--- !u!224 &400001
+RectTransform:
+  m_AnchorMin: {x: 0.3, y: 0.35}
+  m_AnchorMax: {x: 0.7, y: 0.65}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &400002
+Image:
+  m_color: {r: 0.08, g: 0.04, b: 0.04, a: 0.97}
+--- !u!114 &400003
+TextMeshProUGUI:
+  m_text: "Exit Car Trial Simulator?\nYour progress will be saved."
+  m_fontSize: 20
+  m_color: {r: 0.9, g: 0.85, b: 0.85, a: 1}
+  m_alignment: MiddleCenter
+
+# Confirm Quit button
+--- !u!1 &400010
+GameObject:
+  m_Name: ConfirmQuitButton
+  m_IsActive: 1
+--- !u!224 &400011
+RectTransform:
+  m_AnchorMin: {x: 0.08, y: 0.08}
+  m_AnchorMax: {x: 0.45, y: 0.28}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &400012
+Button:
+  m_GameObject: {fileID: 400010}
+--- !u!114 &400013
+TextMeshProUGUI:
+  m_text: "QUIT"
+  m_fontSize: 20
+  m_color: {r: 1, g: 0.6, b: 0.6, a: 1}
+  m_alignment: MiddleCenter
+
+# Cancel button
+--- !u!1 &400020
+GameObject:
+  m_Name: CancelButton
+  m_IsActive: 1
+--- !u!224 &400021
+RectTransform:
+  m_AnchorMin: {x: 0.55, y: 0.08}
+  m_AnchorMax: {x: 0.92, y: 0.28}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+--- !u!114 &400022
+Button:
+  m_GameObject: {fileID: 400020}
+--- !u!114 &400023
+TextMeshProUGUI:
+  m_text: "STAY"
+  m_fontSize: 20
+  m_color: {r: 0.7, g: 0.85, b: 1, a: 1}
+  m_alignment: MiddleCenter

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cone
   - RoadBarriar
+  - police
   layers:
   - Default
   - TransparentFX
